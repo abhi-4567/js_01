@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121;">
+    xhr.send(); // or xhr.send(JSON.stringify(body)) for POST
+```
+This is when the HTTP request actually goes out over the network.
+
+---
+
+### The `readyState` lifecycle
+
+As the request progresses, `readyState` changes through 5 stages:
+
+| Value | State | Meaning |
+|-------|-------|---------|
+| 0 | UNSENT | Object created, `open()` not called |
+| 1 | OPENED | `open()` called |
+| 2 | HEADERS_RECEIVED | Server responded, headers received |
+| 3 | LOADING | Response body is being received |
+| 4 | DONE | Request complete (success or failure) |
+
+Each state change fires `onreadystatechange`.
+
+---
+
+### The full picture
+```
+Client                          Server
+  |                               |
+  |--- xhr.open() -------------->  (configured locally, nothing sent)
+  |--- xhr.send() ---- HTTP Req ->|
+  |                               | (server processes)
+  |<-- readyState 2 (headers) ----|
+  |<-- readyState 3 (loading) ----|
+  |<-- readyState 4 (done) -------|
+  |                               |
+  | xhr.responseText / .response  |
+  | now available                 |
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+    const xhr = new XMLHttpRequest(); //instance created
+    xhr.open('GET', requestUrl,true)  //initialize the request
+    xhr.onreadystatechange = function(){  //event handlers {handle ser resp}
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {        //status
+            const data = JSON.parse(this.responseText)//res as a string
+            console.log(typeof data);
+            console.log(data.followers);
+        }
+    }
+    xhr.send(); //returns as soon as the request is sent
+</script>
+</html>
+const xhr = new XMLHttpRequest()
+xhr.open('GET', url, true)
+xhr.onreadyStateChange=function(){
+    if(xhr.readyState==4){
+        console.log('requst  completes')
+        console.log(JSON.parse(this.responseText))
+    }
+}
+xhr.send()
