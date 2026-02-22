@@ -2,33 +2,37 @@
 
 // console.log(descripter);
 
-console.log(Math.PI);
+// console.log(Math.PI);
 // Math.PI = 5
 // console.log(Math.PI);
 
-// const chai = {
-//     name: 'ginger chai',
-//     price: 250,
-//     isAvailable: true,
+const chai = {
+    name: 'ginger chai',
+    price: 250,
+    isAvailable: true,
 
-//     orderChai: function(){
-//         console.log("chai nhi bni");
-//     }
-// }
+    orderChai: function(){
+        console.log("chai nhi bni");
+    }
+}
 
 // console.log(Object.getOwnPropertyDescriptor(chai, "name"));
 
-// Object.defineProperty(chai, 'name', {
-//     //writable: false,
-//     enumerable: true,
+Object.defineProperty(chai, 'name', {
+    writable: false,
+    // enumerable: true,
     
-// })
+})
 
 // console.log(Object.getOwnPropertyDescriptor(chai, "name"));
+// console.log(chai)
+// chai.name ='masala chai'
+// console.log(chai)
 
-// for (let [key, value] of Object.entries(chai)) {
-//     if (typeof value !== 'function') {
+for (let [key, value] of Object.entries(chai)) {
+    if (typeof value !== 'function') {
         
-//         console.log(`${key} : ${value}`);
-//     }
-// }
+        console.log(`${key} : ${value}`);  //for ofmein object iterate nahi
+    }
+    // console.log(`${key} : ${value}`);
+}
