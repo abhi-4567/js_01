@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #797978;">
+    <div>
+        <h1>BMI calculator</h1>
+        <div>
+            <label for="height">height in cm : </label>
+            <input id="height" type="text" required >
+        </div>
+        <br><br>
+        <div>
+            <label for="weight">weight in KG : </label>
+            <input id="weight" type="text" required >
+        </div>
+        <br><br>
+        <button id="Calculate" style="font-weight:bold">Calculate</button>
+        <br><br>
+        <h1>BMI weight guide</h1>
+        <br><br>
+        <p>
+        <div id="result"></div>
+        Under Weight = Less than 18.6<br><br>
+        Normal Range = 18.6 and 24.9 <br><br>
+        Overweight = Greater than 24.9
+        </p>
+    </div>
+    
+</body>
+<script>
+    const button = document.getElementById('Calculate')
+    const height = document.getElementById('height')
+    const weight = document.getElementById('weight')
+    const  calculat = (e)=>{
+        const bmiValue = ((weight.value)/(height.value)**2)*10000
+        button.setAttribute('disabled','')
+        return document.getElementById('result').appendChild(document.createTextNode(bmiValue))
+        
+    }
+    button.addEventListener('click', (e)=>calculat())
+</script>
+</html>
