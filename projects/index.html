@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color:black;color:white;text-align: center;">
+    <div>
+        <h1>color scheme switcher</h1>
+        <div style="display:flex;height:100px;gap:10px">
+            <button id='aqua' style="width:100px;background-color: aqua;"></button>
+            <button id="yellow" style="width:100px;background-color: yellow;"></button>
+            <button id="red" style="width:100px;background-color: red;"></button>
+            <button id="green" style="width:100px;background-color: green;"></button>
+        </div>
+    </div>
+</body>
+<script>
+    const aqua = document.getElementById('aqua')
+    const yellow = document.getElementById('yellow')
+    const red = document.getElementById('red')
+    const green = document.getElementById('green')
+     aqua.addEventListener('click',()=>document.body.style.backgroundColor = 'aqua')
+    yellow.addEventListener('click',()=>document.body.style.backgroundColor = 'yellow')
+    red.addEventListener('click',()=>document.body.style.backgroundColor = 'red')
+    green.addEventListener('click',()=>document.body.style.backgroundColor = 'green')
+</script>
+</html>
