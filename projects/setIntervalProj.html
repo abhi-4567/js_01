@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id='start'>start</button>
+    <button id='stop'>stop</button>
+</body>
+<script>
+    // let start=document.getElementById('start')
+    // let stop=document.getElementById('stop')
+    let string = '0123456789ABCDEF'
+    const randomColor = function(){
+        let hexCode = '#'
+        for(let i=0;i<6;i++){
+            hexCode += string[Math.floor(Math.random()*16)]
+        }
+        document.body.style.backgroundColor = hexCode
+    }
+    let interval
+    const changeColor = function(){
+        if(interval) return 
+        interval=setInterval(randomColor,1000)
+        start.disabled=true
+        stop.disabled=false
+    }
+    const stopChangeColor= function(){
+        clearInterval(interval)
+        interval=null
+        stop.disabled=true
+        start.disabled=false
+    }
+    document.getElementById('start').addEventListener('click',changeColor)
+    document.getElementById('stop').addEventListener('click',stopChangeColor)
+</script>
+</html>
