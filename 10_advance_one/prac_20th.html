@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//     const xhr = new XMLHttpRequest()
+// xhr.open('GET',"https://api.github.com/users/hiteshchoudhary",true)
+// xhr.onreadystatechange=function(){
+//     console.log(xhr.readyState)
+//     if(xhr.readyState==4){
+//         console.log('done')
+//         const data =JSON.parse(xhr.response)
+//         console.log(data.followers)
+//     }
+// }
+// xhr.send()
+
+
+
+//callback hell****************************
+
+// function walkTheDog(callback){
+//     setTimeout(()=>{
+//         console.log('walked the dog')
+//         callback()
+//     },1000)
+// }
+// function cleanTheKitchen(callback){
+//     setTimeout(()=>{
+//         console.log('cleaned the kitchen ')
+//         callback()
+//     },1500)
+// }
+// function takeTheTrash(callback){
+//     setTimeout(()=>{
+//         console.log('taken out the trash')
+//         callback()
+//     },500)
+// }
+
+// walkTheDog(()=>{
+//     cleanTheKitchen(()=>{
+//         takeTheTrash(()=> console.log('all the tasks are complete'))
+//     })
+// })
+
+// const  promiseOne = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         console.log('on promise one')
+//         resolve()
+//     },1000)
+// })
+
+// console.log(promiseOne)
+
+
+// new Promise((resolve,reject)=>{
+//     let error= false
+//     if(!error){
+//         resolve('no error .... done')
+//     }
+//     else{
+//         reject('there is error')
+//     }
+// }).then((value)=>{console.log(value)})
+//     .catch((value)=>{console.error(value)})
+//     .finally(()=>console.log('done bhai'))
+
+
+// function promiseThree(){
+//     return new Promise((resolve,reject)=>{
+//         let error = false
+//         if(!error){
+//             resolve('no error....ok')
+//         }
+//         else{
+//             reject('there is error')
+//         }
+//     })
+// }
+// promiseThree().then((value)=>{console.log(value)})
+//                 .catch((value)=>{console.log(value)})
+//                 .finally(()=> console.log('done bhai'))
+
+
+function walkTheDog(){
+    return new Promise((resolve,reject)=>{
+        let taskDog = true
+        if(taskDog){
+            setTimeout(()=>{
+                resolve('walked the dog')
+        
+            },1000)
+        }else{
+            reject('error in taskDog')
+        }
+    })
+}
+function cleanTheKitchen(){
+    return new Promise((resolve,reject)=>{
+        let taskKitchen=true
+        if(taskKitchen){
+            setTimeout(()=>{
+                resolve('cleaned the kitchen ')
+            },1500)
+        }else{
+            reject('error in taskKitchen')
+        }
+    })
+}
+function takeTheTrash(){
+    return new Promise((resolve,reject)=>{
+        let taskTrash = true
+        if(taskTrash){
+            setTimeout(()=>{
+                resolve('taken out the trash')
+        
+            },500)
+        }else{
+            reject('error in task 3')
+        }
+    })
+}
+
+// walkTheDog().then((value)=>{console.log(value); return cleanTheKitchen()})
+//             .then((value)=>{console.log(value); return takeTheTrash()})
+//             .then((value)=>{console.log(value); console.log('all tasks completed')})
+//             .catch((error)=>console.error(error))
+//             .finally(()=>{console.log('ended!!!')})
+
+
+
+
+
+
+async function dumDum(){
+    //try {
+    //     const resTask1 = await walkTheDog()
+    //     console.log(resTask1)
+
+    //     const resTask2 = await cleanTheKitchen()
+    //     console.log(resTask2)
+
+    //     const resTask3 = await takeTheTrash()
+    //     console.log(resTask3)
+
+    // } catch (error) {
+    //     console.error(error)
+    // }
+
+    try {
+        const [resTask1,resTask2,resTask3]=await Promise.all([walkTheDog(),cleanTheKitchen(),takeTheTrash()])
+
+        console.log(resTask1)
+         console.log(resTask2)
+          console.log(resTask3)
+    } catch (error) {
+        console.error(error)
+    }
+}
+dumDum()
+
+</script>
+</html>
